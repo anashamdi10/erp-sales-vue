@@ -22,8 +22,11 @@ Route::group(['namespace'=>'admin','prefix'=>'admin','middlewere'=> 'auth:admin'
     Route::get('logout', [loginController::class ,'logout' ])->name('admin.logout');
     Route::get('/adminpanelsetting/show', [Admin_panel_settingController::class ,'index' ])->name('admin.adminPanelSetting.index');
     Route::get('/adminpanelsetting/getCompanyInfo', [Admin_panel_settingController::class ,'get_company_info' ]);
-    
+    Route::get('/adminpanelsetting/getCompanyInfo/edit', [Admin_panel_settingController::class ,'edit' ])->name('admin.adminPanelSetting.edit');
+    Route::post('/adminpanelsetting/getCompanyInfo/update/{com_code}', [Admin_panel_settingController::class ,'update' ])->name('admin.adminPanelSetting.update');
+
 });
+
 
 
 Route::group(['namespace'=>'admin','prefix'=>'admin','middlewere'=> 'guest:admin'],function(){

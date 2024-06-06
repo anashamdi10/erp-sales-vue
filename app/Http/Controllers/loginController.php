@@ -15,7 +15,7 @@ class loginController extends Controller
     public function login(LoginRequest $request)
     {
         
-        if (auth()->guard('admins')->attempt(['username' => $request->username, 
+        if (auth()->guard('admin')->attempt(['username' => $request->username, 
             'password' => $request->password])) {
         
             return redirect()->route('admin.dashboard');

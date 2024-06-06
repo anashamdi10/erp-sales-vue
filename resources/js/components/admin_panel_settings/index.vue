@@ -8,12 +8,12 @@
                 <!-- /.card-header -->
                 <div class="card-body">
 
-                    <table id="example2" class="table table-bordered table-hover">
+                    <table id="example2" class="table table-bordered table-hover" style="width:100% ;">
 
                         <body>
                             <tr>
                                 <td class="widtd30"> كود الشركة</td>
-                                <td>{{ companyInfo.com_code }}</td>
+                                <td style="width: 90%;">{{ companyInfo.com_code }}</td>
                             </tr>
                             <tr>
                                 <td class="widtd30"> اسم الشركة</td>
@@ -58,7 +58,19 @@
                             <tr>
                                 <td class="widtd30"> تاريخ اخر التحديث</td>
                                 <td>
+                                    <div v-if="companyInfo.updated_at !== null">
 
+                                        {{ companyInfo.date }} - {{ companyInfo.time }} {{ companyInfo.timeType }} <br>
+                                        بواسطة :{{companyInfo.updated_by }}
+                                    </div>
+
+                                    <div v-else>
+                                        لا يوجد تحديث
+                                    </div>
+                                    <div>
+                                        <a :href="url"rel="noopener noreferrer"> تحديث</a>
+
+                                    </div>
                                 </td>
                             </tr>
                         </body>
@@ -81,18 +93,22 @@
 </template>
 
 <script>
+import companyInfo from '../../store/modules/companyInfo';
+
 
 
 export default {
     data() {
-        return {}
+        return {
+            time: '',
+            url: 'getCompanyInfo/edit'
+        }
     },
-    metdods: {
     
-    },
 
     created() {
         this.$store.dispatch('getCompanyInfo');
+        
 
     },
 
@@ -102,7 +118,8 @@ export default {
             return this.$store.getters.companyInfo
         },
     
-    }
+    },
+
 }
 
 </script>

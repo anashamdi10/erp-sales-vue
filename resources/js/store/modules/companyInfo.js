@@ -26,6 +26,15 @@ export default {
                     context.commit('CompanyInfo', response.data);
 
                 });
+        },
+        updateCompanyInfo: (context, companyInfo) => {
+            console.log(companyInfo);
+            companyInfo.post('/admin/adminpanelsetting/getCompanyInfo/update/' + companyInfo.com_code )
+                .then((response) => {
+                    console.log(response.data);
+                    
+
+                });
         }
     
 
